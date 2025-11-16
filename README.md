@@ -1,8 +1,8 @@
 # Template Typst para o Manual de Dissertações e Teses (MDT) da UFSM
 
-[![Typst Build](https://github.com/josue/mdt-ufsm/actions/workflows/ci.yml/badge.svg)](https://github.com/josue/mdt-ufsm/actions/workflows/ci.yml)
+[![Typst Build](https://github.com/sehnem/typst-ufsm/actions/workflows/ci.yml/badge.svg)](https://github.com/sehnem/typst-ufsm/actions/workflows/ci.yml)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
-[![GitHub stars](https://img.shields.io/github/stars/josue/mdt-ufsm.svg)](https://github.com/josue/mdt-ufsm/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/sehnem/typst-ufsm.svg)](https://github.com/sehnem/typst-ufsm/stargazers)
 
 Um template [Typst](https://typst.app/) para o [Manual de Dissertações e Teses (MDT)](https://repositorio.ufsm.br/handle/1/24203) da Universidade Federal de Santa Maria (UFSM).
 
@@ -23,6 +23,14 @@ typst compile src/ufsm-thesis.typ
 ```
 
 O arquivo PDF resultante será gerado no mesmo diretório.
+
+## Visualizar Exemplo
+
+Para ver um exemplo do documento gerado com este template, você pode baixar o PDF compilado mais recente:
+
+**[📄 Download do PDF de Exemplo](https://github.com/sehnem/typst-ufsm/releases/download/latest/ufsm-thesis.pdf)**
+
+O PDF é gerado automaticamente a cada commit na branch principal e está sempre atualizado.
 
 ## Uso com VS Code
 

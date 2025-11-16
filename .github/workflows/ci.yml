@@ -22,8 +22,24 @@ jobs:
       - name: Compile document
         run: typst compile src/ufsm-thesis.typ --root .
 
-      - name: Upload PDF
+      - name: Upload PDF as artifact
         uses: actions/upload-artifact@v4
         with:
           name: thesis-pdf
           path: src/ufsm-thesis.pdf
+
+      - name: Update latest release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: latest
+          name: Latest Build
+          body: |
+            PDF compilado automaticamente da branch main.
+            
+            Este é um build automático do template. O PDF é gerado a cada commit na branch principal.
+          files: src/ufsm-thesis.pdf
+          prerelease: false
+          draft: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
