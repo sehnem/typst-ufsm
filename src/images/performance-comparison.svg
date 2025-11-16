@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="400" fill="white"/>
+  
+  <!-- Title -->
+  <text x="300" y="30" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">
+    Comparação de Acurácia dos Algoritmos
+  </text>
+  
+  <!-- Axes -->
+  <line x1="80" y1="350" x2="550" y2="350" stroke="#333" stroke-width="2"/>
+  <line x1="80" y1="350" x2="80" y2="60" stroke="#333" stroke-width="2"/>
+  
+  <!-- Y-axis labels -->
+  <text x="70" y="355" font-family="Arial" font-size="12" text-anchor="end" fill="#666">0%</text>
+  <text x="70" y="280" font-family="Arial" font-size="12" text-anchor="end" fill="#666">20%</text>
+  <text x="70" y="205" font-family="Arial" font-size="12" text-anchor="end" fill="#666">40%</text>
+  <text x="70" y="130" font-family="Arial" font-size="12" text-anchor="end" fill="#666">60%</text>
+  <text x="70" y="55" font-family="Arial" font-size="12" text-anchor="end" fill="#666">80%</text>
+  
+  <!-- Y-axis title -->
+  <text x="20" y="200" font-family="Arial" font-size="14" text-anchor="middle" fill="#333" transform="rotate(-90, 20, 200)">
+    Acurácia (%)
+  </text>
+  
+  <!-- Grid lines -->
+  <line x1="80" y1="275" x2="550" y2="275" stroke="#ddd" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="80" y1="200" x2="550" y2="200" stroke="#ddd" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="80" y1="125" x2="550" y2="125" stroke="#ddd" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="80" y1="50" x2="550" y2="50" stroke="#ddd" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <!-- Bars -->
+  <!-- SVM: 89.4% -->
+  <rect x="100" y="112" width="60" height="238" fill="#4472C4"/>
+  <text x="130" y="100" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">89.4%</text>
+  <!-- Error bar -->
+  <line x1="130" y1="112" x2="130" y2="106" stroke="#333" stroke-width="2"/>
+  <line x1="126" y1="106" x2="134" y2="106" stroke="#333" stroke-width="2"/>
+  
+  <!-- Random Forest: 91.8% -->
+  <rect x="180" y="85" width="60" height="265" fill="#70AD47"/>
+  <text x="210" y="73" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">91.8%</text>
+  <!-- Error bar -->
+  <line x1="210" y1="85" x2="210" y2="79" stroke="#333" stroke-width="2"/>
+  <line x1="206" y1="79" x2="214" y2="79" stroke="#333" stroke-width="2"/>
+  
+  <!-- Neural Networks: 94.2% -->
+  <rect x="260" y="58" width="60" height="292" fill="#FFC000"/>
+  <text x="290" y="46" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">94.2%</text>
+  <!-- Error bar -->
+  <line x1="290" y1="58" x2="290" y2="52" stroke="#333" stroke-width="2"/>
+  <line x1="286" y1="52" x2="294" y2="52" stroke="#333" stroke-width="2"/>
+  
+  <!-- Decision Trees: 85.3% -->
+  <rect x="340" y="145" width="60" height="205" fill="#E74C3C"/>
+  <text x="370" y="133" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">85.3%</text>
+  <!-- Error bar -->
+  <line x1="370" y1="145" x2="370" y2="139" stroke="#333" stroke-width="2"/>
+  <line x1="366" y1="139" x2="374" y2="139" stroke="#333" stroke-width="2"/>
+  
+  <!-- KNN: 87.6% -->
+  <rect x="420" y="125" width="60" height="225" fill="#9B59B6"/>
+  <text x="450" y="113" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">87.6%</text>
+  <!-- Error bar -->
+  <line x1="450" y1="125" x2="450" y2="119" stroke="#333" stroke-width="2"/>
+  <line x1="446" y1="119" x2="454" y2="119" stroke="#333" stroke-width="2"/>
+  
+  <!-- X-axis labels -->
+  <text x="130" y="375" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">SVM</text>
+  <text x="210" y="375" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">Random</text>
+  <text x="210" y="388" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">Forest</text>
+  <text x="290" y="375" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">Redes</text>
+  <text x="290" y="388" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">Neurais</text>
+  <text x="370" y="375" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">Árvores</text>
+  <text x="370" y="388" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">Decisão</text>
+  <text x="450" y="375" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">KNN</text>
+</svg>
+

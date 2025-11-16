@@ -1,0 +1,28 @@
+# Typst cache
+.typst-cache/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.idea/
+*.swp
+*.swo
+*~
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Temporary files
+*.tmp
+*.temp
+
+# Log files
+*.log
+
+# OS generated files
+.directory
+

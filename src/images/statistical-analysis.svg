@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="300" fill="white"/>
+  
+  <!-- Title -->
+  <text x="300" y="30" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">
+    Teste de Nemenyi - Diferença Crítica (CD = 0.85)
+  </text>
+  
+  <!-- Scale line -->
+  <line x1="50" y1="100" x2="550" y2="100" stroke="#333" stroke-width="2"/>
+  
+  <!-- Tick marks and labels -->
+  <line x1="50" y1="95" x2="50" y2="105" stroke="#333" stroke-width="2"/>
+  <text x="50" y="120" font-family="Arial" font-size="11" text-anchor="middle" fill="#666">1</text>
+  
+  <line x1="150" y1="95" x2="150" y2="105" stroke="#333" stroke-width="2"/>
+  <text x="150" y="120" font-family="Arial" font-size="11" text-anchor="middle" fill="#666">2</text>
+  
+  <line x1="250" y1="95" x2="250" y2="105" stroke="#333" stroke-width="2"/>
+  <text x="250" y="120" font-family="Arial" font-size="11" text-anchor="middle" fill="#666">3</text>
+  
+  <line x1="350" y1="95" x2="350" y2="105" stroke="#333" stroke-width="2"/>
+  <text x="350" y="120" font-family="Arial" font-size="11" text-anchor="middle" fill="#666">4</text>
+  
+  <line x1="450" y1="95" x2="450" y2="105" stroke="#333" stroke-width="2"/>
+  <text x="450" y="120" font-family="Arial" font-size="11" text-anchor="middle" fill="#666">5</text>
+  
+  <line x1="550" y1="95" x2="550" y2="105" stroke="#333" stroke-width="2"/>
+  <text x="550" y="120" font-family="Arial" font-size="11" text-anchor="middle" fill="#666">6</text>
+  
+  <!-- Algorithm positions (ordered by rank) -->
+  <!-- Redes Neurais: rank 1.2 -->
+  <circle cx="70" cy="100" r="5" fill="#FFC000"/>
+  <line x1="70" y1="100" x2="70" y2="140" stroke="#333" stroke-width="1"/>
+  <text x="70" y="155" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Redes</text>
+  <text x="70" y="168" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Neurais</text>
+  <text x="70" y="183" font-family="Arial" font-size="10" text-anchor="middle" fill="#666">(1.2)</text>
+  
+  <!-- Random Forest: rank 2.1 -->
+  <circle cx="160" cy="100" r="5" fill="#70AD47"/>
+  <line x1="160" y1="100" x2="160" y2="140" stroke="#333" stroke-width="1"/>
+  <text x="160" y="155" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Random</text>
+  <text x="160" y="168" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Forest</text>
+  <text x="160" y="183" font-family="Arial" font-size="10" text-anchor="middle" fill="#666">(2.1)</text>
+  
+  <!-- SVM: rank 3.3 -->
+  <circle cx="280" cy="100" r="5" fill="#4472C4"/>
+  <line x1="280" y1="100" x2="280" y2="200" stroke="#333" stroke-width="1"/>
+  <text x="280" y="215" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">SVM</text>
+  <text x="280" y="230" font-family="Arial" font-size="10" text-anchor="middle" fill="#666">(3.3)</text>
+  
+  <!-- KNN: rank 3.8 -->
+  <circle cx="330" cy="100" r="5" fill="#9B59B6"/>
+  <line x1="330" y1="100" x2="330" y2="200" stroke="#333" stroke-width="1"/>
+  <text x="330" y="215" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">KNN</text>
+  <text x="330" y="230" font-family="Arial" font-size="10" text-anchor="middle" fill="#666">(3.8)</text>
+  
+  <!-- Decision Trees: rank 4.6 -->
+  <circle cx="410" cy="100" r="5" fill="#E74C3C"/>
+  <line x1="410" y1="100" x2="410" y2="200" stroke="#333" stroke-width="1"/>
+  <text x="410" y="215" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Árvores</text>
+  <text x="410" y="228" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Decisão</text>
+  <text x="410" y="243" font-family="Arial" font-size="10" text-anchor="middle" fill="#666">(4.6)</text>
+  
+  <!-- Critical difference bars -->
+  <!-- Bar connecting Redes Neurais and Random Forest (not significant) -->
+  <line x1="70" y1="65" x2="160" y2="65" stroke="#4CAF50" stroke-width="4"/>
+  
+  <!-- Bar connecting SVM and KNN (not significant) -->
+  <line x1="280" y1="65" x2="330" y2="65" stroke="#4CAF50" stroke-width="4"/>
+  
+  <!-- Legend -->
+  <text x="50" y="270" font-family="Arial" font-size="11" text-anchor="start" fill="#555">
+    Algoritmos conectados por barra não apresentam diferença estatisticamente significativa (p > 0.05)
+  </text>
+</svg>
+

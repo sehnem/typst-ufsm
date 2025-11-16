@@ -1,0 +1,12 @@
+{
+  "typst-lsp.exportPdf": "onSave",
+  "typst-lsp.exportPdfPath": "./output/",
+  "typst-lsp.serverPath": "typst-lsp",
+  "typst-lsp.enableDiagnostics": true,
+  "typst-lsp.enableCompletion": true,
+  "typst-lsp.enableHover": true,
+  "files.associations": {
+    "*.typ": "typst"
+  }
+}
+
