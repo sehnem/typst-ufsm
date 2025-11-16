@@ -26,3 +26,6 @@ Thumbs.db
 # OS generated files
 .directory
 
+# Output files
+output/
+*.pdf
