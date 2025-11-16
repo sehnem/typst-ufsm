@@ -26,11 +26,13 @@ O arquivo PDF resultante será gerado no mesmo diretório.
 
 ## Visualizar Exemplo
 
-Para ver um exemplo do documento gerado com este template, você pode baixar o PDF compilado mais recente:
+Para ver um exemplo do documento gerado com este template, você pode baixar o PDF compilado automaticamente pelo GitHub Actions:
 
-**[📄 Download do PDF de Exemplo](https://github.com/sehnem/typst-ufsm/releases/download/latest/ufsm-thesis.pdf)**
+1. Acesse a [página de Actions](https://github.com/sehnem/typst-ufsm/actions) do repositório
+2. Clique no workflow mais recente que foi executado com sucesso (ícone verde ✓)
+3. Na seção "Artifacts", baixe o arquivo `thesis-pdf`
 
-O PDF é gerado automaticamente a cada commit na branch principal e está sempre atualizado.
+Alternativamente, você pode visualizar o PDF diretamente na aba "Actions" após cada commit na branch principal.
 
 ## Uso com VS Code
 
