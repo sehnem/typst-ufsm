@@ -73,6 +73,14 @@
   )
 }
 
+// Função para citação indireta (apud) narrativa
+// Exemplo: Autor Original (Ano) apud Autor Consultada (Ano)
+#let apud(original, consultada) = {
+  cite(original, form: "prose")
+  [ apud ]
+  cite(consultada, form: "prose")
+}
+
 // ============================================================================
 // CONFIGURAÇÕES GLOBAIS
 // ============================================================================

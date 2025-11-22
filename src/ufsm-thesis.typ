@@ -1,6 +1,6 @@
 // Tese de Doutorado - UFSM
 
-#import "ufsm-thesis-template.typ": anexo, apendice, glossario, tabela-abnt, thesis-template
+#import "ufsm-thesis-template.typ": anexo, apendice, glossario, tabela-abnt, thesis-template, apud
 
 // ============================================================================
 // CONFIGURAÇÃO DAS INFORMAÇÕES DA TESE
@@ -148,7 +148,7 @@ A inteligência artificial (IA) tem transformado diversos setores da sociedade n
 
 As imagens médicas, como radiografias, tomografias computadorizadas, ressonâncias magnéticas e ultrassonografias, são ferramentas essenciais para o diagnóstico de diversas patologias. No entanto, a interpretação dessas imagens requer profissionais altamente treinados e experientes, além de ser um processo demorado e sujeito a erros humanos @shen2017deep.
 
-Conforme destaca Topol (2019, p. 45), "a inteligência artificial [...] tem o potencial de *transformar radicalmente* [grifo nosso] a prática médica nos próximos anos". Este exemplo demonstra o uso de *supressões* [...], *ênfase* (grifo nosso) e *interpolações* [grifo nosso] em citações diretas curtas.
+Conforme destaca #cite(label("topol2019high"), form: "prose", supplement: "p. 45"), "a inteligência artificial [...] tem o potencial de *transformar radicalmente* [grifo nosso] a prática médica nos próximos anos". Este exemplo demonstra o uso de *supressões* [...], *ênfase* (grifo nosso) e *interpolações* [grifo nosso] em citações diretas curtas.
 
 Neste contexto, as técnicas de aprendizado profundo (deep learning), especialmente as redes neurais convolucionais (Convolutional Neural Networks - CNNs), têm demonstrado resultados impressionantes na tarefa de classificação automática de imagens médicas @litjens2017survey. Estas técnicas são capazes de aprender representações hierárquicas complexas diretamente dos dados, sem a necessidade de engenharia manual de características.
 
@@ -221,7 +221,7 @@ Este capítulo apresenta os conceitos fundamentais necessários para a compreens
 
 Aprendizado de máquina (Machine Learning) é um subcampo da inteligência artificial que se concentra no desenvolvimento de algoritmos capazes de aprender padrões a partir de dados, sem serem explicitamente programados para cada tarefa específica.
 
-Como afirmam Mitchell et al., "um programa de computador aprende a partir da experiência E em relação a alguma classe de tarefas T e medida de desempenho P, se seu desempenho em T, medido por P, melhora com a experiência E" @mitchell1997machine.
+Como afirmam #cite(label("mitchell1997machine"), form: "prose"), "um programa de computador aprende a partir da experiência E em relação a alguma classe de tarefas T e medida de desempenho P, se seu desempenho em T, medido por P, melhora com a experiência E".
 
 Este é um exemplo de *citação direta curta* (até 3 linhas), delimitada por aspas duplas e incluindo autor, ano e página (quando disponível).
 
@@ -245,9 +245,9 @@ Redes neurais artificiais são modelos computacionais inspirados no funcionament
 
 Segundo estudos recentes, "redes neurais profundas são capazes de aprender representações hierárquicas de dados, onde cada camada aprende características de complexidade crescente" @litjens2017survey.
 
-A arquitetura de redes neurais profundas evoluiu significativamente desde o trabalho pioneiro de Rosenblatt (1958) _apud_ Goodfellow et al. (2016), que introduziu o conceito de perceptron#footnote[O perceptron de Rosenblatt foi um dos primeiros modelos de rede neural, embora limitado a problemas linearmente separáveis. Este é um exemplo de citação de citação (apud) com nota de rodapé adicional.].
+A arquitetura de redes neurais profundas evoluiu significativamente desde o trabalho pioneiro de #apud(label("rosenblatt1958perceptron"), label("goodfellow2016deep")), que introduziu o conceito de perceptron#footnote[O perceptron de Rosenblatt foi um dos primeiros modelos de rede neural, embora limitado a problemas linearmente separáveis. Este é um exemplo de citação de citação (apud) com nota de rodapé adicional.].
 
-As redes neurais convolucionais representam um avanço importante na área de visão computacional, permitindo o processamento eficiente de dados estruturados em grade (LECUN et al., 1998). Este é um exemplo de *citação indireta* (paráfrase), onde o conteúdo é baseado na obra mas escrito com palavras próprias.
+As redes neurais convolucionais representam um avanço importante na área de visão computacional, permitindo o processamento eficiente de dados estruturados em grade @lecun1998gradient. Este é um exemplo de *citação indireta* (paráfrase), onde o conteúdo é baseado na obra mas escrito com palavras próprias.
 
 === Perceptron e Redes Feedforward
 
@@ -259,7 +259,7 @@ onde $w_i$ são os pesos, $x_i$ são as entradas, $b$ é o bias e $sigma$ é a f
 
 A @eq:perceptron representa a operação fundamental de um neurônio artificial. Este é um exemplo de *equação numerada* que pode ser referenciada no texto.
 
-Diversos estudos (LECUN et al., 1998; KRIZHEVSKY; SUTSKEVER; HINTON, 2012; HE et al., 2016) demonstraram a eficácia de redes neurais profundas. Este é um exemplo de *múltiplas citações simultâneas* em ordem alfabética, separadas por ponto e vírgula.
+Diversos estudos @lecun1998gradient @krizhevsky2012imagenet @he2016deep demonstraram a eficácia de redes neurais profundas. Este é um exemplo de *múltiplas citações simultâneas* em ordem alfabética, separadas por ponto e vírgula.
 
 === Funções de Ativação
 
@@ -312,7 +312,7 @@ DenseNet conecta cada camada a todas as camadas subsequentes, promovendo reutili
 
 Utiliza compound scaling para balancear profundidade, largura e resolução da rede de forma uniforme#footnote[O compound scaling é mais eficiente do que escalar apenas uma dimensão por vez.].
 
-Segundo Tan e Le (2019, p. 6731, tradução nossa), "o escalonamento composto é mais eficiente porque balanceia todas as dimensões da rede de maneira uniforme"#footnote[No original: "_compound scaling is more efficient because it balances all dimensions of the network in a uniform way_". Este é um exemplo de citação com *tradução nossa* em nota de rodapé.].
+Segundo #cite(label("tan2019efficientnet"), form: "prose", supplement: "p. 6731, tradução nossa"), "o escalonamento composto é mais eficiente porque balanceia todas as dimensões da rede de maneira uniforme"#footnote[No original: "_compound scaling is more efficient because it balances all dimensions of the network in a uniform way_". Este é um exemplo de citação com *tradução nossa* em nota de rodapé.].
 
 Durante entrevista com especialista em radiologia#footnote[Informação fornecida pelo Dr. João Silva em entrevista realizada em São Paulo, em 15 de março de 2024.], foi mencionado que a integração de sistemas de IA no fluxo de trabalho clínico requer adaptações significativas (informação verbal). Este é um exemplo de *informação verbal* com especificação da fonte em nota de rodapé.
 
@@ -361,15 +361,15 @@ Nos últimos anos, houve um crescimento exponencial de publicações sobre o uso
 
 === Detecção de Pneumonia em Radiografias
 
-Rajpurkar et al. desenvolveram o CheXNet, uma rede neural baseada em DenseNet-121 capaz de detectar pneumonia em radiografias torácicas com desempenho comparável ou superior a radiologistas humanos. O modelo foi treinado em mais de 100.000 imagens do dataset ChestX-ray14.
+#cite(label("rajpurkar2017chexnet"), form: "prose") desenvolveram o CheXNet, uma rede neural baseada em DenseNet-121 capaz de detectar pneumonia em radiografias torácicas com desempenho comparável ou superior a radiologistas humanos. O modelo foi treinado em mais de 100.000 imagens do dataset ChestX-ray14.
 
 === Classificação de Lesões de Pele
 
-Esteva et al. demonstraram que uma CNN treinada em 129.450 imagens clínicas pode classificar lesões de pele com acurácia comparável a dermatologistas certificados. O modelo utilizou transfer learning a partir da arquitetura Inception-v3.
+#cite(label("esteva2019guide"), form: "prose") demonstraram que uma CNN treinada em 129.450 imagens clínicas pode classificar lesões de pele com acurácia comparável a dermatologistas certificados. O modelo utilizou transfer learning a partir da arquitetura Inception-v3.
 
 === Diagnóstico de Retinopatia Diabética
 
-Gulshan et al. desenvolveram um sistema de deep learning para detecção de retinopatia diabética em imagens de retina, alcançando sensibilidade de 97.5% e especificidade de 93.4%, superando oftalmologistas em alguns casos.
+#cite(label("gulshan2016development"), form: "prose") desenvolveram um sistema de deep learning para detecção de retinopatia diabética em imagens de retina, alcançando sensibilidade de 97.5% e especificidade de 93.4%, superando oftalmologistas em alguns casos.
 
 == Técnicas de Aumento de Dados
 
@@ -386,11 +386,11 @@ Data augmentation é crucial para evitar overfitting quando há poucos dados de 
     columns: (auto, auto, auto, auto, auto),
     align: (left, left, center, center, left),
     table.header([*Estudo*], [*Arquitetura*], [*Dataset*], [*Acurácia*], [*Ano*]),
-    [Rajpurkar et al.], [DenseNet-121], [ChestX-ray14], [92.1%], [2017],
-    [Esteva et al.], [Inception-v3], [Skin Lesions], [91.0%], [2017],
-    [Gulshan et al.], [Inception-v4], [EyePACS], [97.5%], [2016],
-    [Wang et al.], [ResNet-50], [ChestX-ray], [88.4%], [2018],
-    [Litjens et al.], [U-Net], [CAMELYON16], [92.5%], [2016],
+    [#cite(label("rajpurkar2017chexnet"), form: "author")], [DenseNet-121], [ChestX-ray14], [92.1%], [2017],
+    [#cite(label("esteva2019guide"), form: "author")], [Inception-v3], [Skin Lesions], [91.0%], [2017],
+    [#cite(label("gulshan2016development"), form: "author")], [Inception-v4], [EyePACS], [97.5%], [2016],
+    [#cite(label("wang2017chestx"), form: "author")], [ResNet-50], [ChestX-ray], [88.4%], [2018],
+    [#cite(label("litjens2017survey"), form: "author")], [U-Net], [CAMELYON16], [92.5%], [2016],
   ),
   caption: [Principais trabalhos sobre deep learning em imagens médicas.],
 ) <tab:trabalhos-relacionados>
@@ -712,7 +712,7 @@ Os resultados demonstraram que as arquiteturas modernas de deep learning, especi
 
 Comparando nossos resultados com estudos similares:
 
-- *CheXNet* (Rajpurkar et al., 2017): 92.1% de acurácia
+- *CheXNet* @rajpurkar2017chexnet: 92.1% de acurácia
 - *Nosso EfficientNet-B3*: 95.6% de acurácia
 
 A melhoria pode ser atribuída a:
@@ -794,26 +794,26 @@ As citações podem ser diretas (transcrição textual) ou indiretas (paráfrase
 Na citação indireta, o autor escreve a ideia com suas próprias palavras.
 
 *Exemplo com um autor:*
-Segundo Silva, as arquiteturas de segmentação semântica evoluíram significativamente...
+Segundo #cite(label("silva2023tese"), form: "prose"), as arquiteturas de segmentação semântica evoluíram significativamente...
 Ou: As arquiteturas evoluíram significativamente @silva2023tese.
 
 *Exemplo com dois autores:*
-Souza e Oliveira destacam a importância do pré-processamento...
+#cite(label("souza2022classificacao"), form: "prose") destacam a importância do pré-processamento...
 Ou: O pré-processamento é fundamental @souza2022classificacao.
 
 *Exemplo com três autores:*
-Kotsiantis, Zaharakis e Pintelas revisaram técnicas de classificação...
+#cite(label("kotsiantis2007supervised"), form: "prose") revisaram técnicas de classificação...
 Ou: As técnicas de classificação foram revisadas @kotsiantis2007supervised.
 
 *Exemplo com mais de três autores (et al.):*
-Esteva et al. apresentam um guia sobre deep learning...
+#cite(label("esteva2019guide"), form: "prose") apresentam um guia sobre deep learning...
 Ou: O guia sobre deep learning destaca aplicações clínicas @esteva2019guide.
 
 === Citação Direta Curta (até 3 linhas)
 
 Deve ser inserida no texto entre aspas duplas.
 
-Conforme a Organização Mundial da Saúde, "a inteligência artificial tem um enorme potencial para fortalecer a prestação de serviços de saúde" @who2021ethics.
+Conforme a #cite(label("who2021ethics"), form: "prose"), "a inteligência artificial tem um enorme potencial para fortalecer a prestação de serviços de saúde".
 
 === Citação Direta Longa (mais de 3 linhas)
 
@@ -829,7 +829,7 @@ Abaixo são apresentados exemplos de como diferentes tipos de documentos são ci
 
 === Livros e Teses
 
-Livros clássicos como o de Mitchell @mitchell1997machine e teses recentes como a de Silva @silva2023tese são fundamentais.
+Livros clássicos como o de #cite(label("mitchell1997machine"), form: "prose") e teses recentes como a de #cite(label("silva2023tese"), form: "prose") são fundamentais.
 
 === Artigos de Periódicos e Jornais
 
