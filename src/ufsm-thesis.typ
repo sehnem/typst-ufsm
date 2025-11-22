@@ -18,7 +18,9 @@
   
   tipo-trabalho: "Tese",
   
-  grau: "Doutor em Ciência da Computação",
+  titulo-grau: "Doutor em Ciência da Computação",
+
+  grau: "Doutor",
   
   area-concentracao: "Inteligência Artificial",
   
@@ -72,7 +74,7 @@
   
   // Texto de financiamento (opcional)
   texto-financiamento: [
-    This study was financied in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior – Brasil (CAPES) – Finance Code 001
+    This study was financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior – Brasil (CAPES) – Finance Code 001
   ],
   
   // Resumo em português (obrigatório)
@@ -777,6 +779,72 @@ As principais contribuições deste trabalho incluem:
 + *Análise de interpretabilidade* usando Grad-CAM para aumentar confiança clínica.
 
 + *Validação com especialistas* confirmando a relevância clínica dos resultados.
+
+= Exemplos de Aplicação das Normas UFSM
+
+Este capítulo tem como objetivo demonstrar a aplicação das normas de citações e referências da UFSM (adaptadas da ABNT) utilizando diversos tipos de documentos.
+
+== Citações no Texto
+
+As citações podem ser diretas (transcrição textual) ou indiretas (paráfrase).
+
+=== Citação Indireta (Paráfrase)
+
+Na citação indireta, o autor escreve a ideia com suas próprias palavras.
+
+*Exemplo com um autor:*
+Segundo Silva, as arquiteturas de segmentação semântica evoluíram significativamente...
+Ou: As arquiteturas evoluíram significativamente @silva2023tese.
+
+*Exemplo com dois autores:*
+Souza e Oliveira destacam a importância do pré-processamento...
+Ou: O pré-processamento é fundamental @souza2022classificacao.
+
+*Exemplo com três autores:*
+Kotsiantis, Zaharakis e Pintelas revisaram técnicas de classificação...
+Ou: As técnicas de classificação foram revisadas @kotsiantis2007supervised.
+
+*Exemplo com mais de três autores (et al.):*
+Esteva et al. apresentam um guia sobre deep learning...
+Ou: O guia sobre deep learning destaca aplicações clínicas @esteva2019guide.
+
+=== Citação Direta Curta (até 3 linhas)
+
+Deve ser inserida no texto entre aspas duplas.
+
+Conforme a Organização Mundial da Saúde, "a inteligência artificial tem um enorme potencial para fortalecer a prestação de serviços de saúde" @who2021ethics.
+
+=== Citação Direta Longa (mais de 3 linhas)
+
+Deve ser destacada com recuo de 4 cm, fonte menor e sem aspas.
+
+#quote(block: true)[
+  A Lei Geral de Proteção de Dados Pessoais (LGPD) dispõe sobre o tratamento de dados pessoais, inclusive nos meios digitais, por pessoa natural ou por pessoa jurídica de direito público ou privado, com o objetivo de proteger os direitos fundamentais de liberdade e de privacidade e o livre desenvolvimento da personalidade da pessoa natural @brasil2018lgpd.
+]
+
+== Exemplos por Tipo de Documento
+
+Abaixo são apresentados exemplos de como diferentes tipos de documentos são citados e referenciados.
+
+=== Livros e Teses
+
+Livros clássicos como o de Mitchell @mitchell1997machine e teses recentes como a de Silva @silva2023tese são fundamentais.
+
+=== Artigos de Periódicos e Jornais
+
+Artigos científicos @shen2017deep e notícias de jornal @folha2023ia trazem perspectivas diferentes.
+
+=== Documentos Legais e Patentes
+
+A legislação brasileira @brasil2018lgpd e patentes de invenção @pereira2021sistema protegem a propriedade intelectual e os dados.
+
+=== Documentos Online e Relatórios Técnicos
+
+Sites institucionais @ufsm2024site e relatórios de organizações internacionais @who2021ethics fornecem dados atualizados.
+
+=== Eventos
+
+Trabalhos apresentados em congressos @souza2022classificacao são importantes fontes de pesquisa em andamento.
 
 = Conclusões e Trabalhos Futuros
 

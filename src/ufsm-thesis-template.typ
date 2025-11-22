@@ -9,27 +9,16 @@
 // Função para criar glossário
 // IMPORTANTE: Os itens devem estar em ORDEM ALFABÉTICA
 #let glossario(itens) = {
-  pagebreak()
-  v(2cm, weak: true)
+  // Ordenar itens alfabeticamente
+  let itens-ordenados = itens.sorted(key: i => i.termo)
+
+  // Usa heading para aparecer no Sumário automaticamente
+  heading(level: 1, numbering: none, "GLOSSÁRIO")
   
-  // Título
-  block(
-    width: 100%,
-    spacing: 0em,
-    above: 0em,
-    below: 1.5em,
-  )[
-    #set align(center)
-    #text(size: 12pt, weight: "bold")[
-      GLOSSÁRIO
-    ]
-  ]
-  
-  // Glossário: ordem alfabética, espaçamento 1.5
-  // Os itens devem ser fornecidos já ordenados alfabeticamente
+  // Glossário: sem recuo, espaçamento 1.5, alinhado à esquerda
   set par(first-line-indent: 0cm, spacing: 1.5em, leading: 0.65em, justify: false)
   
-  for item in itens [
+  for item in itens-ordenados [
     *#item.termo:* #item.definicao
     
   ]
@@ -37,42 +26,18 @@
 
 // Função para criar apêndice
 #let apendice(letra, titulo-apendice, conteudo) = {
-  pagebreak()
-  v(2cm, weak: true)
-  
-  // Título - TODO em negrito
-  block(
-    width: 100%,
-    spacing: 0em,
-    above: 0em,
-    below: 1.5em,
-  )[
-    #set align(center)
-    #text(size: 12pt, weight: "bold")[
-      APÊNDICE #letra – #upper(titulo-apendice)
-    ]
-  ]
+  // Usa heading para aparecer no Sumário automaticamente
+  // A formatação (quebra de página, espaço superior, negrito, maiúsculas)
+  // é tratada pela regra de show heading level 1
+  heading(level: 1, numbering: none)[APÊNDICE #letra – #titulo-apendice]
   
   conteudo
 }
 
 // Função para criar anexo
 #let anexo(letra, titulo-anexo, conteudo) = {
-  pagebreak()
-  v(2cm, weak: true)
-  
-  // Título - TODO em negrito
-  block(
-    width: 100%,
-    spacing: 0em,
-    above: 0em,
-    below: 1.5em,
-  )[
-    #set align(center)
-    #text(size: 12pt, weight: "bold")[
-      ANEXO #letra – #upper(titulo-anexo)
-    ]
-  ]
+  // Usa heading para aparecer no Sumário automaticamente
+  heading(level: 1, numbering: none)[ANEXO #letra – #titulo-anexo]
   
   conteudo
 }
@@ -120,6 +85,7 @@
   coorientador: none,
   tipo-trabalho: "Tese",  // Tese, Dissertação, TCC
   grau: "Doutor",  // Doutor, Mestre, Bacharel
+  titulo-grau: "Doutor em Ciência da Computação",
   area-concentracao: "",
   programa: "",
   instituicao: "Universidade Federal de Santa Maria",
@@ -152,7 +118,7 @@
   
   // Bibliografia
   bibliografia-arquivo: none,
-  bibliografia-estilo: "apa",
+  bibliografia-estilo: "ufsm-abnt.csl",
   
   // Configuração de impressão (para trabalhos com mais de 100 páginas)
   // Norma: trabalhos com mais de 100 páginas devem usar impressão frente e verso
@@ -319,7 +285,7 @@
           #set align(left)
           #set par(justify: true, first-line-indent: 0cm, leading: 0.5em, spacing: 0em)
           #text(size: 12pt)[
-            #tipo-trabalho apresentad#if tipo-trabalho == "Tese" [a] else [o] ao #programa da #instituicao (UFSM, RS), como requisito parcial para obtenção do título de #grau em #area-concentracao.
+            #tipo-trabalho apresentad#if tipo-trabalho == "Tese" [a] else [o] ao #programa da #instituicao (UFSM, RS), como requisito parcial para obtenção do título de #titulo-grau em #area-concentracao.
           ]
         ]
       ]
@@ -845,9 +811,11 @@
       ]
       
       // Lista - alinhamento à esquerda, espaçamento 1.5 entre itens
-      // Os itens devem ser fornecidos já ordenados alfabeticamente
+      // Ordenação automática alfabética
       #set par(first-line-indent: 0cm, spacing: 1.5em, leading: 0.65em)
-      #for item in lista-abreviaturas [
+      #let sorted-abreviaturas = lista-abreviaturas.sorted(key: item => item.sigla)
+      
+      #for item in sorted-abreviaturas [
         #item.sigla – #item.descricao\
       ]
     ]
@@ -983,7 +951,11 @@
       below: 1.5em,
     )[
       #set par(first-line-indent: 0cm)
-      #set align(left)
+      
+      // Centralizar se não houver numeração (elementos pós-textuais), caso contrário esquerda
+      #let alignment = if it.numbering == none { center } else { left }
+      #set align(alignment)
+      
       #set text(size: 12pt, weight: "bold")
       #upper(it)
     ]
@@ -1056,24 +1028,32 @@
     set align(center)
     set par(first-line-indent: 0cm, leading: 0.5em, spacing: 0em)
     
-    // Dois espaços de 1.5 antes da ilustração
-    v(3em)
-    
-    it.body
-    v(0.5em)
-    
-    // Legenda com fonte 10, espaçamento simples
-    set text(size: 10pt)
-    it.caption
-    
-    // Dois espaços de 1.5 depois da ilustração
-    v(3em)
+    // Remover o espaçamento automático acima e abaixo se estiver sendo somado
+    // Utilizar block para garantir isolamento do texto circundante
+    block(
+      width: 100%,
+      above: 1.5em, 
+      below: 1.5em,
+      breakable: false
+    )[
+      // ABNT: Legenda (Identificação) na parte SUPERIOR
+      #set text(size: 10pt)
+      #it.caption
+      
+      #v(0.5em)
+      
+      // Corpo da figura/tabela
+      #it.body
+      
+      // Nota: A fonte deve ser incluída manualmente abaixo do corpo
+      // ou como parte do corpo da figura.
+    ]
   }
-  
+
   // Configuração de citações diretas longas (ABNT: mais de 3 linhas)
   // Usar #quote(block: true)[texto] para citações longas
   show quote.where(block: true): it => {
-    set text(size: 10pt)
+    // Remover espaçamento extra se estiver sendo somado pelo parágrafo anterior
     set par(
       first-line-indent: 0cm,
       leading: 0.5em,
@@ -1081,16 +1061,15 @@
       justify: true,
     )
     
-    // Dois espaços de 1.5 antes
-    v(3em)
-    
-    // Recuo de 4cm da margem esquerda
-    block(inset: (left: 4cm, right: 0cm))[
+    block(
+      width: 100%, 
+      above: 1.5em, 
+      below: 1.5em,
+      inset: (left: 4cm, right: 0cm)
+    )[
+      #set text(size: 10pt)
       #it.body
     ]
-    
-    // Dois espaços de 1.5 depois
-    v(3em)
   }
   
   // Configuração de notas de rodapé (ABNT: fonte 10, espaçamento simples)
@@ -1132,25 +1111,11 @@
   // Normas UFSM: Elemento pós-textual, sem numeração de seção
   
   if bibliografia-arquivo != none {
-    pagebreak()
+    // Usa heading para aparecer no Sumário
+    heading(level: 1, numbering: none, "REFERÊNCIAS")
     
-    v(2cm, weak: true)
-    
-    // Título
-    block(
-      width: 100%,
-      spacing: 0em,
-      above: 0em,
-      below: 1.5em,
-    )[
-      #set align(center)
-      #text(size: 12pt, weight: "bold")[
-        REFERÊNCIAS
-      ]
-    ]
-    
-    // Bibliografia - espaçamento simples dentro da referência, 1 linha em branco entre referências
-    set par(first-line-indent: 0cm, hanging-indent: 0.5cm, leading: 0.5em, spacing: 1.5em)
+    // Bibliografia: alinhamento à esquerda (NÃO justificado), espaçamento simples
+    set par(first-line-indent: 0cm, hanging-indent: 0.5cm, leading: 0.5em, spacing: 1.5em, justify: false)
     bibliography(bibliografia-arquivo, style: bibliografia-estilo, title: none)
   }
 }
