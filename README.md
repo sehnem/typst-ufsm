@@ -34,18 +34,18 @@ Para ver um exemplo do documento gerado com este template, você pode baixar o P
 
 É altamente recomendado o uso do Visual Studio Code com a extensão [Tinymist Typst](https://marketplace.visualstudio.com/items?itemName=T-K-H.tinymist) para uma experiência de desenvolvimento otimizada. Esta extensão oferece:
 
--   Visualização ao vivo do documento.
--   Autocompletar de código.
--   Destaque de sintaxe.
--   Navegação fácil pelo documento.
+- Visualização ao vivo do documento.
+- Autocompletar de código.
+- Destaque de sintaxe.
+- Navegação fácil pelo documento.
 
 ## Estado Atual e Contribuições
 
 Este é um trabalho em andamento e ainda não está completo. As seguintes áreas precisam de atenção:
 
--   **Referências Bibliográficas**: Atualmente a bibliografia está utilizando o estilo APA. É necessário implementar o estilo ABNT e as especificidades do MDT para citações e referências bibliográficas.
--   **Paginação Frente e Verso**: A configuração de margens espelhadas para impressão frente e verso ainda não foi totalmente implementada.
--   **Validação Geral**: Todo o template precisa ser revisado e comparado cuidadosamente com as normas do MDT da UFSM para garantir conformidade.
+- ~~**Referências Bibliográficas**: Atualmente a bibliografia está utilizando o estilo APA. É necessário implementar o estilo ABNT e as especificidades do MDT para citações e referências bibliográficas.~~
+- ~~**Paginação Frente e Verso**: A configuração de margens espelhadas para impressão frente e verso ainda não foi totalmente implementada.~~
+- **Validação Geral**: Todo o template precisa ser revisado e comparado cuidadosamente com as normas do MDT da UFSM para garantir conformidade.
 
 Contribuições são muito bem-vindas! Se você tiver interesse em ajudar, sinta-se à vontade para abrir uma *issue* ou enviar um *pull request*.
 
@@ -59,4 +59,4 @@ Em outras palavras: se você modificar o template e redistribuir o template modi
 
 ## Link para o MDT
 
--   [Manual de Dissertações e Teses - MDT (2021)](https://repositorio.ufsm.br/handle/1/24203)
+- [Manual de Dissertações e Teses - MDT (2021)](https://repositorio.ufsm.br/handle/1/24203)

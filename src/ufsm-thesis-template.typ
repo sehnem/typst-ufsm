@@ -14,13 +14,13 @@
 
   // Usa heading para aparecer no Sumário automaticamente
   heading(level: 1, numbering: none, "GLOSSÁRIO")
-  
+
   // Glossário: sem recuo, espaçamento 1.5, alinhado à esquerda
   set par(first-line-indent: 0cm, spacing: 1.5em, leading: 0.65em, justify: false)
-  
+
   for item in itens-ordenados [
     *#item.termo:* #item.definicao
-    
+
   ]
 }
 
@@ -30,7 +30,7 @@
   // A formatação (quebra de página, espaço superior, negrito, maiúsculas)
   // é tratada pela regra de show heading level 1
   heading(level: 1, numbering: none)[APÊNDICE #letra – #titulo-apendice]
-  
+
   conteudo
 }
 
@@ -38,7 +38,7 @@
 #let anexo(letra, titulo-anexo, conteudo) = {
   // Usa heading para aparecer no Sumário automaticamente
   heading(level: 1, numbering: none)[ANEXO #letra – #titulo-anexo]
-  
+
   conteudo
 }
 
@@ -48,7 +48,7 @@
   colunas,
   alinhamento,
   cabecalho,
-  ..linhas
+  ..linhas,
 ) = {
   table(
     columns: colunas,
@@ -83,8 +83,8 @@
   autor: "",
   orientador: "",
   coorientador: none,
-  tipo-trabalho: "Tese",  // Tese, Dissertação, TCC
-  grau: "Doutor",  // Doutor, Mestre, Bacharel
+  tipo-trabalho: "Tese", // Tese, Dissertação, TCC
+  grau: "Doutor", // Doutor, Mestre, Bacharel
   titulo-grau: "Doutor em Ciência da Computação",
   area-concentracao: "",
   programa: "",
@@ -93,10 +93,8 @@
   local: "Santa Maria, RS",
   ano: "",
   data-defesa: "",
-  
   // Banca examinadora
   banca: (),
-  
   // Elementos pré-textuais
   dedicatoria: none,
   agradecimentos: none,
@@ -106,177 +104,171 @@
   palavras-chave: (),
   abstract: "",
   keywords: (),
-  
   // Texto de financiamento (opcional)
   texto-financiamento: none,
-  
   // Listas
   lista-figuras: true,
   lista-tabelas: true,
   lista-abreviaturas: none,
   lista-simbolos: none,
-  
   // Bibliografia
   bibliografia-arquivo: none,
   bibliografia-estilo: "ufsm-abnt.csl",
-  
   // Configuração de impressão (para trabalhos com mais de 100 páginas)
   // Norma: trabalhos com mais de 100 páginas devem usar impressão frente e verso
   // com margens espelhadas e numeração alternada
-  impressao-frente-verso: false,  // true = margens espelhadas e numeração alternada
-  
+  impressao-frente-verso: false, // true = margens espelhadas e numeração alternada
   // Conteúdo
   corpo,
 ) = {
-  
   // ============================================================================
   // CONFIGURAÇÕES GERAIS DO DOCUMENTO
   // ============================================================================
-  
+
+  // Helpers para controle de fluxo frente e verso
+  let page-break-odd = if impressao-frente-verso { pagebreak(to: "odd") }
+  let page-break-even = if impressao-frente-verso { pagebreak(to: "even") }
+
+  // Configuração de margens (frente e verso ou simples)
+  let margens-padrao = if impressao-frente-verso {
+    (inside: 3cm, outside: 2cm, top: 3cm, bottom: 2cm)
+  } else {
+    (left: 3cm, right: 2cm, top: 3cm, bottom: 2cm)
+  }
+
   set document(
     title: titulo,
     author: autor,
     date: auto,
   )
-  
+
   // Configuração de página (ABNT: A4, margens específicas)
   // Para trabalhos com mais de 100 páginas: margens espelhadas
   set page(
     paper: "a4",
-    margin: if impressao-frente-verso {
-      (
-        inside: 3cm,   // Margem interna (espelhada)
-        outside: 2cm,  // Margem externa (espelhada)
-        top: 3cm,
-        bottom: 2cm,
-      )
-    } else {
-      (
-        left: 3cm,     // Margem esquerda fixa
-        right: 2cm,    // Margem direita fixa
-        top: 3cm,
-        bottom: 2cm,
-      )
-    },
+    margin: margens-padrao,
   )
-  
+
   // Configuração de texto
   set text(
-    font: "Times New Roman",  // ABNT recomenda Times ou Arial
+    font: "Times New Roman", // ABNT recomenda Times ou Arial
     size: 12pt,
     lang: "pt",
     hyphenate: true,
   )
-  
+
   // Configuração de parágrafos (ABNT: justificado, recuo 1.25cm)
   set par(
     justify: true,
     leading: 0.65em,
     first-line-indent: 1.25cm,
   )
-  
+
   // Espaçamento entre linhas (ABNT: 1.5)
   set par(spacing: 1.5em)
-  
+
   // ============================================================================
   // FUNÇÕES AUXILIARES
   // ============================================================================
-  
+
   // Função para texto centralizado sem recuo
   let centralizado(conteudo) = {
     set align(center)
     set par(first-line-indent: 0cm, justify: false)
     conteudo
   }
-  
+
   // Função para texto sem recuo
   let sem-recuo(conteudo) = {
     set par(first-line-indent: 0cm)
     conteudo
   }
-  
+
   // Função para título em maiúsculas e negrito
   let titulo-maiusculo(texto) = {
     text(weight: "bold", upper(texto))
   }
-  
+
   // ============================================================================
   // CAPA (elemento obrigatório - não conta na paginação)
   // ============================================================================
   // Normas UFSM: Fonte 14, espaçamento simples, mínimo 8 espaços entre seções
-  
+
   page(
-    margin: (left: 3cm, right: 2cm, top: 3cm, bottom: 2cm),
+    margin: margens-padrao,
     numbering: none,
   )[
     #set align(center)
     #set par(first-line-indent: 0cm, justify: false, leading: 0.5em, spacing: 0em)
-    
+
     // Cabeçalho - espaçamento simples
     #text(size: 14pt)[
       #upper(instituicao)\
       #upper(centro)\
       #upper(programa)
     ]
-    
+
     // Mínimo 8 espaços simples (8 * 1.0em * 14pt ≈ 4cm)
     #v(4cm)
-    
+
     // Nome do autor - letras minúsculas com iniciais maiúsculas
     #text(size: 14pt)[
       #autor
     ]
-    
+
     // Mínimo 8 espaços simples
     #v(4cm)
-    
+
     // Título - negrito e maiúsculas
     #text(size: 14pt, weight: "bold")[
       #upper(titulo)
     ]
-    
+
     #v(1fr)
-    
+
     // Local e ano
     #text(size: 14pt)[
       #local\
       #ano
     ]
-    
+
     #v(1cm)
   ]
-  
+
   // Resetar contador para que a Folha de Rosto seja a página 1 (capa não é contada)
   counter(page).update(0)
-  
+
   // ============================================================================
   // FOLHA DE ROSTO (elemento obrigatório - contagem de páginas inicia aqui)
   // ============================================================================
   // Normas UFSM: Fonte 12, 7 espaços simples entre seções, recuo de 7cm
-  
+
+  // Garantir que inicie no anverso (ímpar) se frente e verso
+  page-break-odd
+
   page(
-    margin: (left: 3cm, right: 2cm, top: 3cm, bottom: 2cm),
+    margin: margens-padrao,
     numbering: none,
   )[
     #set align(center)
     #set par(first-line-indent: 0cm, justify: false, leading: 0.5em, spacing: 0em)
-    
+
     // Nome completo do autor - centralizado, na parte superior
     #text(size: 12pt)[
       #autor
     ]
-    
+
     // 7 espaços simples (7 * 1.0em * 12pt ≈ 2.5cm)
     #v(2.5cm)
-    
+
     // Título - negrito e maiúsculas
     #text(size: 12pt, weight: "bold")[
       #upper(titulo)
     ]
-    
+
     // 7 espaços simples
     #v(2.5cm)
-    
+
     // Natureza do trabalho (recuo de 7cm da margem esquerda)
     #box(width: 100%)[
       #align(left)[
@@ -290,16 +282,16 @@
         ]
       ]
     ]
-    
+
     // Orientação - 10 espaços simples abaixo da nota
     #v(3.5cm)
-    
+
     #box(width: 100%)[
       #align(center)[
         #set par(first-line-indent: 0cm, leading: 0.5em, spacing: 0em)
         #text(size: 12pt)[
           Orientador#if orientador.contains("Prof") [] else [(a)]: #orientador
-          
+
           #if coorientador != none [
             \
             Coorientador#if coorientador.contains("Prof") [] else [(a)]: #coorientador
@@ -307,30 +299,33 @@
         ]
       ]
     ]
-    
+
     #v(1fr)
-    
+
     // Local e ano
     #text(size: 12pt)[
       #local\
       #ano
     ]
-    
+
     #v(1cm)
   ]
-  
+
   // ============================================================================
   // FICHA CATALOGRÁFICA (verso da folha de rosto)
   // ============================================================================
   // Normas UFSM: Deve seguir o padrão do sistema de geração automática da UFSM
-  
+
+  // Garantir que fique no verso (par) se frente e verso
+  page-break-even
+
   page(
-    margin: (left: 3cm, right: 2cm, top: 3cm, bottom: 2cm),
+    margin: margens-padrao,
     numbering: none,
   )[
     #set par(first-line-indent: 0cm, justify: false, leading: 0.65em)
     #set text(size: 12pt)
-    
+
     // Texto de financiamento (se aplicável)
     #if texto-financiamento != none [
       #v(2cm)
@@ -340,9 +335,9 @@
         ]
       ]
     ]
-    
+
     #v(1fr)
-    
+
     // Caixa da ficha catalográfica
     #set align(center)
     #block(
@@ -353,30 +348,30 @@
       #set align(left)
       #set text(size: 10pt)
       #set par(first-line-indent: 0cm, spacing: 0.5em, justify: false, leading: 0.5em)
-      
+
       // Formato: Último Sobrenome, Nome
       #let nomes = autor.split(" ")
       #let ultimo-sobrenome = nomes.last()
       #let primeiro-nome = nomes.first()
-      
+
       #ultimo-sobrenome, #primeiro-nome\
       #h(1.25cm)#titulo / #primeiro-nome #ultimo-sobrenome.– #ano.\
       #h(1.25cm)#context [#counter(page).final().first()] p.; 30 cm
-      
+
       #v(0.3cm)
-      
+
       #h(1.25cm)Orientador: #orientador
       #if coorientador != none [
         \
         #h(1.25cm)Coorientador: #coorientador
       ]
-      
+
       #v(0.3cm)
-      
+
       #h(1.25cm)#tipo-trabalho (#if grau == "Doutor" [doutorado] else if grau == "Mestre" [mestrado] else [graduação]) – #instituicao, #centro, #programa, RS, #ano
-      
+
       #v(0.3cm)
-      
+
       // Palavras-chave numeradas
       #h(1.25cm)
       #{
@@ -387,61 +382,63 @@
           [ ]
         }
       }
-      
+
       // Extração dos sobrenomes dos orientadores
       #let sobrenome-orientador = orientador.split(" ").last()
-      I. #sobrenome-orientador, orient. 
+      I. #sobrenome-orientador, orient.
       #if coorientador != none [
         #let sobrenome-coorientador = coorientador.split(" ").last()
         II. #sobrenome-coorientador, coorient. III. Título.
       ] else [
         II. Título.
       ]
-      
+
       #v(0.5cm)
-      
+
     ]
-    
+
     #v(1cm)
-    
+
     // Declaração de autenticidade
     #set align(left)
     #set text(size: 11pt)
     #set par(justify: true, first-line-indent: 0cm, spacing: 0.8em, leading: 0.65em)
-    
+
     Declaro, #upper(autor), para os devidos fins e sob as penas da lei, que a pesquisa constante neste trabalho de conclusão de curso (#tipo-trabalho) foi por mim elaborada e que as informações necessárias obtidas de consulta em literatura e outras fontes estão devidamente referenciadas. Declaro, ainda, que este trabalho ou parte dele não foi apresentado anteriormente para obtenção de qualquer outro grau acadêmico, estando ciente de que a inveracidade da presente declaração poderá resultar na anulação da titulação pela Universidade, entre outras consequências legais.
-    
+
     #v(1cm)
   ]
-  
+
   // ============================================================================
   // FOLHA DE APROVAÇÃO
   // ============================================================================
   // Normas UFSM: Nome em negrito e maiúsculas, 7 espaços entre seções, 4 espaços antes da data
-  
+
+  page-break-odd
+
   page(
-    margin: (left: 3cm, right: 2cm, top: 3cm, bottom: 2cm),
+    margin: margens-padrao,
     numbering: none,
   )[
     #set align(center)
     #set par(first-line-indent: 0cm, justify: false, leading: 0.5em, spacing: 0em)
-    
+
     // Nome completo do autor - negrito e maiúsculas
     #text(size: 12pt, weight: "bold")[
       #upper(autor)
     ]
-    
+
     // 7 espaços simples
     #v(2.5cm)
-    
+
     // Título - negrito e maiúsculas
     #text(size: 12pt, weight: "bold")[
       #upper(titulo)
     ]
-    
+
     // 7 espaços simples
     #v(2.5cm)
-    
+
     // Natureza do trabalho (recuo de 7cm)
     #box(width: 100%)[
       #align(left)[
@@ -455,26 +452,26 @@
         ]
       ]
     ]
-    
+
     // 4 espaços simples
     #v(1.4cm)
-    
+
     // Data da aprovação - negrito
     #text(size: 12pt, weight: "bold")[
       Aprovad#if tipo-trabalho == "Tese" [a] else [o] em #data-defesa
     ]
-    
+
     #v(2cm)
-    
+
     // Banca examinadora
     #line(length: 60%, stroke: 0.5pt)
     #v(0.3cm)
     #text(size: 12pt)[
       #orientador (Presidente/Orientador)
     ]
-    
+
     #v(1.5cm)
-    
+
     #for membro in banca [
       #line(length: 60%, stroke: 0.5pt)
       #v(0.3cm)
@@ -483,30 +480,31 @@
       ]
       #v(1.5cm)
     ]
-    
+
     #v(1fr)
-    
+
     // Local e ano
     #text(size: 12pt)[
       #local\
       #ano
     ]
-    
+
     #v(1cm)
   ]
-  
+
   // ============================================================================
   // DEDICATÓRIA (elemento opcional)
   // ============================================================================
   // Normas UFSM: Sem título, formatação livre, centralizada na página, espaçamento 1.5
-  
+
   if dedicatoria != none {
+    page-break-odd
     page(
-      margin: (left: 3cm, right: 2cm, top: 3cm, bottom: 2cm),
+      margin: margens-padrao,
       numbering: none,
     )[
       #v(1fr)
-      
+
       // Texto - centralizado na página, espaçamento 1.5
       #align(center)[
         #block(width: 70%)[
@@ -517,23 +515,24 @@
           ]
         ]
       ]
-      
+
       #v(1fr)
     ]
   }
-  
+
   // ============================================================================
   // AGRADECIMENTOS (elemento opcional, mas obrigatório para bolsistas CAPES)
   // ============================================================================
   // Normas UFSM: Título centralizado, uma linha em branco, texto justificado com espaçamento 1.5
-  
+
   if agradecimentos != none {
+    page-break-odd
     page(
-      margin: (left: 3cm, right: 2cm, top: 3cm, bottom: 2cm),
+      margin: margens-padrao,
       numbering: none,
     )[
       #v(2cm, weak: true)
-      
+
       // Título
       #block(
         width: 100%,
@@ -546,7 +545,7 @@
           AGRADECIMENTOS
         ]
       ]
-      
+
       // Texto - justificado, espaçamento 1.5
       #set par(first-line-indent: 1.25cm, justify: true, leading: 0.65em, spacing: 1.5em)
       #text(size: 12pt)[
@@ -554,19 +553,20 @@
       ]
     ]
   }
-  
+
   // ============================================================================
   // EPÍGRAFE (elemento opcional)
   // ============================================================================
   // Normas UFSM: Sem título, formatação livre, geralmente à direita na parte inferior, espaçamento 1.5, fonte entre parênteses
-  
+
   if epigrafe != none {
+    page-break-odd
     page(
-      margin: (left: 3cm, right: 2cm, top: 3cm, bottom: 2cm),
+      margin: margens-padrao,
       numbering: none,
     )[
       #v(1fr)
-      
+
       // Citação - alinhada à direita, parte inferior da página, espaçamento 1.5
       #align(right)[
         #block(width: 60%)[
@@ -585,24 +585,26 @@
           ]
         ]
       ]
-      
+
       #v(2cm)
     ]
   }
-  
+
   // ============================================================================
   // RESUMO (elemento obrigatório)
   // ============================================================================
   // Normas UFSM: Título centralizado, 2 linhas em branco, espaçamento simples no texto
-  
+
+  page-break-odd
+
   page(
-    margin: (left: 3cm, right: 2cm, top: 3cm, bottom: 2cm),
+    margin: margens-padrao,
     numbering: none,
   )[
     #set par(first-line-indent: 0cm, justify: false)
-    
+
     #v(2cm, weak: true)
-    
+
     // Título "RESUMO"
     #block(
       width: 100%,
@@ -615,7 +617,7 @@
         RESUMO
       ]
     ]
-    
+
     // Título e autoria - centralizados, espaçamento simples
     #block(
       width: 100%,
@@ -628,44 +630,46 @@
       #text(size: 12pt, weight: "bold")[
         #upper(titulo)
       ]
-      
+
       #v(0.5cm)
-      
+
       #text(size: 12pt)[
         AUTOR: #autor\
         ORIENTADOR: #orientador
       ]
     ]
-    
+
     // Texto do resumo - parágrafo único, espaçamento simples, justificado
     #set par(first-line-indent: 0cm, justify: true, leading: 0.5em, spacing: 0em)
     #text(size: 12pt)[
       #resumo
     ]
-    
+
     // 2 linhas em branco (espaçamento simples)
     #v(1cm)
-    
+
     // Palavras-chave
     #set par(first-line-indent: 0cm, justify: false)
     #text(size: 12pt)[
       *Palavras-chave:* #palavras-chave.join(". ").
     ]
   ]
-  
+
   // ============================================================================
   // ABSTRACT (elemento obrigatório)
   // ============================================================================
   // Normas UFSM: Mesma estrutura e formatação do Resumo, apenas traduzido
-  
+
+  page-break-odd
+
   page(
-    margin: (left: 3cm, right: 2cm, top: 3cm, bottom: 2cm),
+    margin: margens-padrao,
     numbering: none,
   )[
     #set par(first-line-indent: 0cm, justify: false)
-    
+
     #v(2cm, weak: true)
-    
+
     // Título "ABSTRACT"
     #block(
       width: 100%,
@@ -678,7 +682,7 @@
         ABSTRACT
       ]
     ]
-    
+
     // Título e autoria - centralizados, espaçamento simples
     #block(
       width: 100%,
@@ -691,43 +695,44 @@
       #text(size: 12pt, weight: "bold")[
         #upper(titulo)
       ]
-      
+
       #v(0.5cm)
-      
+
       #text(size: 12pt)[
         AUTHOR: #autor\
         ADVISOR: #orientador
       ]
     ]
-    
+
     // Texto do abstract - parágrafo único, espaçamento simples, justificado
     #set par(first-line-indent: 0cm, justify: true, leading: 0.5em, spacing: 0em)
     #text(size: 12pt)[
       #abstract
     ]
-    
+
     // 2 linhas em branco (espaçamento simples)
     #v(1cm)
-    
+
     // Keywords
     #set par(first-line-indent: 0cm, justify: false)
     #text(size: 12pt)[
       *Keywords:* #keywords.join(". ").
     ]
   ]
-  
+
   // ============================================================================
   // LISTA DE FIGURAS (elemento opcional)
   // ============================================================================
   // Normas UFSM: Título centralizado, uma linha em branco (1.5), espaçamento 1.5
-  
+
   if lista-figuras {
+    page-break-odd
     page(
-      margin: (left: 3cm, right: 2cm, top: 3cm, bottom: 2cm),
+      margin: margens-padrao,
       numbering: none,
     )[
       #v(2cm, weak: true)
-      
+
       // Título
       #block(
         width: 100%,
@@ -740,7 +745,7 @@
           LISTA DE FIGURAS
         ]
       ]
-      
+
       // Lista - espaçamento 1.5
       #set par(first-line-indent: 0cm, leading: 0.65em, spacing: 1.5em)
       #outline(
@@ -749,19 +754,20 @@
       )
     ]
   }
-  
+
   // ============================================================================
   // LISTA DE TABELAS (elemento opcional)
   // ============================================================================
   // Normas UFSM: Título centralizado, uma linha em branco (1.5), espaçamento 1.5
-  
+
   if lista-tabelas {
+    page-break-odd
     page(
-      margin: (left: 3cm, right: 2cm, top: 3cm, bottom: 2cm),
+      margin: margens-padrao,
       numbering: none,
     )[
       #v(2cm, weak: true)
-      
+
       // Título
       #block(
         width: 100%,
@@ -774,7 +780,7 @@
           LISTA DE TABELAS
         ]
       ]
-      
+
       // Lista - espaçamento 1.5
       #set par(first-line-indent: 0cm, leading: 0.65em, spacing: 1.5em)
       #outline(
@@ -783,20 +789,21 @@
       )
     ]
   }
-  
+
   // ============================================================================
   // LISTA DE ABREVIATURAS E SIGLAS (elemento opcional)
   // ============================================================================
   // Normas UFSM: Título centralizado, uma linha em branco, espaçamento 1.5 entre itens
   // IMPORTANTE: Os itens devem estar em ORDEM ALFABÉTICA
-  
+
   if lista-abreviaturas != none {
+    page-break-odd
     page(
-      margin: (left: 3cm, right: 2cm, top: 3cm, bottom: 2cm),
+      margin: margens-padrao,
       numbering: none,
     )[
       #v(2cm, weak: true)
-      
+
       // Título
       #block(
         width: 100%,
@@ -809,31 +816,32 @@
           LISTA DE ABREVIATURAS E SIGLAS
         ]
       ]
-      
+
       // Lista - alinhamento à esquerda, espaçamento 1.5 entre itens
       // Ordenação automática alfabética
       #set par(first-line-indent: 0cm, spacing: 1.5em, leading: 0.65em)
       #let sorted-abreviaturas = lista-abreviaturas.sorted(key: item => item.sigla)
-      
+
       #for item in sorted-abreviaturas [
         #item.sigla – #item.descricao\
       ]
     ]
   }
-  
+
   // ============================================================================
   // LISTA DE SÍMBOLOS (elemento opcional)
   // ============================================================================
   // Normas UFSM: Título centralizado, uma linha em branco, espaçamento SIMPLES entre itens
   // IMPORTANTE: Os itens devem estar na ORDEM DE APRESENTAÇÃO NO TEXTO, NÃO alfabética
-  
+
   if lista-simbolos != none {
+    page-break-odd
     page(
-      margin: (left: 3cm, right: 2cm, top: 3cm, bottom: 2cm),
+      margin: margens-padrao,
       numbering: none,
     )[
       #v(2cm, weak: true)
-      
+
       // Título
       #block(
         width: 100%,
@@ -846,7 +854,7 @@
           LISTA DE SÍMBOLOS
         ]
       ]
-      
+
       // Lista - alinhamento à esquerda, espaçamento SIMPLES entre itens
       // Os itens devem ser fornecidos na ordem em que aparecem no texto
       #set par(first-line-indent: 0cm, spacing: 1em, leading: 0.5em)
@@ -855,18 +863,20 @@
       ]
     ]
   }
-  
+
   // ============================================================================
   // SUMÁRIO (elemento obrigatório)
   // ============================================================================
   // Normas UFSM: Último elemento pré-textual, não inclui elementos pré-textuais
-  
+
+  page-break-odd
+
   page(
-    margin: (left: 3cm, right: 2cm, top: 3cm, bottom: 2cm),
+    margin: margens-padrao,
     numbering: none,
   )[
     #v(2cm, weak: true)
-    
+
     // Título
     #block(
       width: 100%,
@@ -879,7 +889,7 @@
         SUMÁRIO
       ]
     ]
-    
+
     // Sumário - espaçamento 1.5
     // Deve incluir até 5 níveis (seção quinária)
     #set par(first-line-indent: 0cm, leading: 0.65em, spacing: 1.5em)
@@ -889,12 +899,17 @@
       depth: 5,
     )
   ]
-  
+
   // ============================================================================
   // CORPO DO TRABALHO
   // ============================================================================
   // Normas UFSM: Numeração aparece a partir da Introdução (fonte 10, canto superior direito)
-  
+
+  // Garantir que a numeração inicie na página correta (anverso) e que a página em branco anterior não seja numerada
+  if impressao-frente-verso {
+    pagebreak(to: "odd")
+  }
+
   // Configurar numeração de páginas (inicia no corpo do texto)
   // IMPORTANTE: A numeração CONTINUA a contagem desde a folha de rosto
   // NÃO resetar o contador - a Introdução mostra o número real de páginas contadas
@@ -930,19 +945,24 @@
       ]
     },
   )
-  
-  
+
+
   // Configurar numeração de seções (ABNT: até 5 níveis)
   set heading(numbering: "1.1.1.1.1")
-  
+
   // Configurar numeração de equações
   set math.equation(numbering: "(1)")
-  
+
   // Formatação de títulos (ABNT)
   // Seção Primária: MAIÚSCULAS, negrito, nova página
   // Norma: "Parte superior da página" - 2cm do topo, 1.5em abaixo
   show heading.where(level: 1): it => {
-    pagebreak(weak: false)
+    // Se frente e verso, inicia sempre em página ímpar (anverso)
+    if impressao-frente-verso {
+      pagebreak(to: "odd", weak: true)
+    } else {
+      pagebreak(weak: true)
+    }
     v(2cm, weak: true)
     block(
       width: 100%,
@@ -951,16 +971,16 @@
       below: 1.5em,
     )[
       #set par(first-line-indent: 0cm)
-      
+
       // Centralizar se não houver numeração (elementos pós-textuais), caso contrário esquerda
       #let alignment = if it.numbering == none { center } else { left }
       #set align(alignment)
-      
+
       #set text(size: 12pt, weight: "bold")
       #upper(it)
     ]
   }
-  
+
   // Seção Secundária: MAIÚSCULAS, sem negrito
   show heading.where(level: 2): it => {
     block(
@@ -975,7 +995,7 @@
       #upper(it)
     ]
   }
-  
+
   // Seção Terciária: Maiúsculas e minúsculas, sem negrito
   show heading.where(level: 3): it => {
     block(
@@ -990,7 +1010,7 @@
       #it
     ]
   }
-  
+
   // Seção Quaternária: Maiúsculas e minúsculas, itálico
   show heading.where(level: 4): it => {
     block(
@@ -1005,7 +1025,7 @@
       #it
     ]
   }
-  
+
   // Seção Quinária: Maiúsculas e minúsculas, sem destaque
   show heading.where(level: 5): it => {
     block(
@@ -1020,31 +1040,31 @@
       #it
     ]
   }
-  
+
   // Configuração de figuras e tabelas (ABNT: fonte 10 para legendas, espaçamento simples)
   set figure(gap: 0.5em)
-  
+
   show figure: it => {
     set align(center)
     set par(first-line-indent: 0cm, leading: 0.5em, spacing: 0em)
-    
+
     // Remover o espaçamento automático acima e abaixo se estiver sendo somado
     // Utilizar block para garantir isolamento do texto circundante
     block(
       width: 100%,
-      above: 1.5em, 
+      above: 1.5em,
       below: 1.5em,
-      breakable: false
+      breakable: false,
     )[
       // ABNT: Legenda (Identificação) na parte SUPERIOR
       #set text(size: 10pt)
       #it.caption
-      
+
       #v(0.5em)
-      
+
       // Corpo da figura/tabela
       #it.body
-      
+
       // Nota: A fonte deve ser incluída manualmente abaixo do corpo
       // ou como parte do corpo da figura.
     ]
@@ -1060,25 +1080,25 @@
       spacing: 0em,
       justify: true,
     )
-    
+
     block(
-      width: 100%, 
-      above: 1.5em, 
+      width: 100%,
+      above: 1.5em,
       below: 1.5em,
-      inset: (left: 4cm, right: 0cm)
+      inset: (left: 4cm, right: 0cm),
     )[
       #set text(size: 10pt)
       #it.body
     ]
   }
-  
+
   // Configuração de notas de rodapé (ABNT: fonte 10, espaçamento simples)
   set footnote.entry(
     separator: line(length: 5cm, stroke: 0.5pt),
     clearance: 0.5em,
     gap: 0.5em,
   )
-  
+
   show footnote.entry: it => {
     set text(size: 10pt)
     set par(
@@ -1089,31 +1109,31 @@
     )
     it
   }
-  
+
   // Configuração de listas enumeradas (ABNT: espaçamento 1.5)
   set enum(
     indent: 1.25cm,
     spacing: 1.5em,
   )
-  
+
   // Configuração de listas com marcadores (ABNT: espaçamento 1.5)
   set list(
     indent: 1.25cm,
     spacing: 1.5em,
   )
-  
+
   // Corpo do texto
   corpo
-  
+
   // ============================================================================
   // REFERÊNCIAS BIBLIOGRÁFICAS (elemento obrigatório)
   // ============================================================================
   // Normas UFSM: Elemento pós-textual, sem numeração de seção
-  
+
   if bibliografia-arquivo != none {
     // Usa heading para aparecer no Sumário
     heading(level: 1, numbering: none, "REFERÊNCIAS")
-    
+
     // Bibliografia: alinhamento à esquerda (NÃO justificado), espaçamento simples
     set par(first-line-indent: 0cm, hanging-indent: 0.5cm, leading: 0.5em, spacing: 1.5em, justify: false)
     bibliography(bibliografia-arquivo, style: bibliografia-estilo, title: none)
