@@ -1,0 +1,11 @@
+[package]
+name = "ufsm-thesis"
+version = "0.1.0"
+entrypoint = "src/lib.typ"
+compiler = "0.13"
+authors = ["Josué M. Sehnem"]
+license = "CC-BY-SA-4.0"
+description = "Template para dissertações e teses da UFSM conforme a MDT/UFSM 2021"
+repository = "https://github.com/sehnem/typst-ufsm"
+keywords = ["thesis", "ufsm", "abnt", "academic"]
+categories = ["paper"]

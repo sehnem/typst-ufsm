@@ -5,14 +5,15 @@
     <title-short>UFSM-ABNT</title-short>
     <id>http://www.zotero.org/styles/associacao-brasileira-de-normas-tecnicas-ufsm</id>
     <link href="http://www.zotero.org/styles/associacao-brasileira-de-normas-tecnicas-ufsm" rel="self"/>
-    <link href="https://www.ufsm.br/" rel="documentation"/>
+    <link href="https://repositorio.ufsm.br/handle/1/24203" rel="documentation"/>
     <author>
-      <name>Universidade Federal de Santa Maria</name>
+      <name>Josué M. Sehnem</name>
+      <email>josue@sehnem.com</email>
     </author>
     <category citation-format="author-date"/>
     <category field="generic-base"/>
     <summary>The Brazilian Standard Style in accordance with ABNT-NBR 10520.2023 and ABNT-NBR 6023.2018, adapted for UFSM</summary>
-    <updated>2025-11-22T00:00:00+00:00</updated>
+    <updated>2026-06-27T00:00:00+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="pt-BR">
