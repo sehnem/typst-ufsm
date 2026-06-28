@@ -20,10 +20,10 @@ jobs:
       - name: Setup Typst
         uses: typst-community/setup-typst@v3
         with:
-          version: '0.11.1'
+          version: 'latest'
 
       - name: Compile demo document
-        run: typst compile src/ufsm-thesis.typ --root .
+        run: typst compile exemplo/ufsm-thesis.typ --root .
 
       - name: Compile test — tese
         run: typst compile tests/tese.typ --root .
@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: thesis-pdf
-          path: src/ufsm-thesis.pdf
+          path: exemplo/ufsm-thesis.pdf
 
       - name: Update latest release
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -53,7 +53,7 @@ jobs:
             PDF compilado automaticamente da branch main.
             
             Este é um build automático do template. O PDF é gerado a cada commit na branch principal.
-          files: src/ufsm-thesis.pdf
+          files: exemplo/ufsm-thesis.pdf
           prerelease: false
           draft: false
         env:
