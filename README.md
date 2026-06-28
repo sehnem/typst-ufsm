@@ -1,6 +1,6 @@
 # Template Typst para o Manual de Dissertações e Teses (MDT) da UFSM
 
-[![Typst Build](https://github.com/sehnem/typst-ufsm/actions/workflows/ci.yml/badge.svg)](https://github.com/sehnem/typst-ufsm/actions/workflows/ci.yml)
+[![Typst Build](https://github.com/sehnem/typst-ufsm/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/sehnem/typst-ufsm/actions/workflows/ci.yml)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 [![GitHub stars](https://img.shields.io/github/stars/sehnem/typst-ufsm.svg)](https://github.com/sehnem/typst-ufsm/stargazers)
 
