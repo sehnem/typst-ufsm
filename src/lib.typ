@@ -252,6 +252,7 @@
   )[
     #set align(center)
     #set par(first-line-indent: 0cm, justify: false, leading: 0.5em, spacing: 0em)
+    #set text(hyphenate: false)
 
     #text(size: 14pt)[
       #upper(instituicao)\
