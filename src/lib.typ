@@ -139,12 +139,16 @@
   resumo: "",
   palavras-chave: (),
   abstract: "",
+  titulo-ingles: none,    // título em inglês (exibido na página Abstract)
+  subtitulo-ingles: none, // subtítulo em inglês (opcional)
   keywords: (),
   // Resumo em terceiro idioma (opcional — espanhol, francês, italiano ou alemão)
   resumo-extra: none,
   palavras-chave-extra: (),
   titulo-resumo-extra: "RESUMEN",
   titulo-palavras-chave-extra: "Palabras clave:",
+  titulo-extra: none,     // título no terceiro idioma (exibido na página do resumo extra)
+  subtitulo-extra: none,  // subtítulo no terceiro idioma (opcional)
   errata: none,
   texto-financiamento: none,
   lista-figuras: true,
@@ -157,9 +161,11 @@
   bibliografia-arquivo: none,
   bibliografia-estilo: "associacao-brasileira-de-normas-tecnicas-ufsm.csl",
   // Fonte: MDT aceita Times New Roman ou Arial.
+  // Localmente (sistema): "Times New Roman", "Arial"
   // Sem instalação extra (embutidas no Typst): "Libertinus Serif", "New Computer Modern"
   // Com instalação (Google Fonts): "PT Sans"
-  // De sistema (Windows/macOS): "Times New Roman", "Arial"
+  // Ao usar "Times New Roman" ou "Arial", o template aplica fallback automático
+  // para fontes embutidas quando a fonte de sistema não estiver disponível.
   fonte: "Times New Roman",
   impressao-frente-verso: false,
   // Elementos pós-textuais (glossário, apêndices, anexos) — MDT: após as referências
@@ -204,8 +210,18 @@
     margin: margens-padrao,
   )
 
+  // When a system font is requested, fall back to a bundled Typst equivalent
+  // so the template compiles correctly in environments without system fonts (e.g. WASM).
+  let font-array = if fonte == "Times New Roman" {
+    ("Times New Roman", "Liberation Serif", "Libertinus Serif", "New Computer Modern")
+  } else if fonte == "Arial" {
+    ("Arial", "Liberation Sans", "Helvetica Neue", "Helvetica", "New Computer Modern Sans")
+  } else {
+    (fonte,)
+  }
+
   set text(
-    font: fonte,
+    font: font-array,
     size: 12pt,
     lang: "pt",
     hyphenate: true,
@@ -230,6 +246,28 @@
     if subtitulo != none {
       linebreak()
       text(size: size)[#upper(subtitulo)]
+    }
+  }
+
+  let render-titulo-ingles(size) = {
+    set text(hyphenate: false)
+    let t = if titulo-ingles != none { titulo-ingles } else { titulo }
+    let st = if titulo-ingles != none { subtitulo-ingles } else { subtitulo }
+    text(size: size, weight: "bold")[#upper(t)#if st != none [:]]
+    if st != none {
+      linebreak()
+      text(size: size)[#upper(st)]
+    }
+  }
+
+  let render-titulo-extra(size) = {
+    set text(hyphenate: false)
+    let t = if titulo-extra != none { titulo-extra } else { titulo }
+    let st = if titulo-extra != none { subtitulo-extra } else { subtitulo }
+    text(size: size, weight: "bold")[#upper(t)#if st != none [:]]
+    if st != none {
+      linebreak()
+      text(size: size)[#upper(st)]
     }
   }
 
@@ -720,7 +758,7 @@
     )[
       #set align(center)
       #set par(leading: 0.5em, spacing: 0em)
-      #render-titulo(12pt)
+      #render-titulo-ingles(12pt)
 
       #v(0.5cm)
 
@@ -778,7 +816,7 @@
       )[
         #set align(center)
         #set par(leading: 0.5em, spacing: 0em)
-        #render-titulo(12pt)
+        #render-titulo-extra(12pt)
 
         #v(0.5cm)
 
